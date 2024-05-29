@@ -1,0 +1,84 @@
+/*flutter create flutter_simple_app
+from command prompt flutter create flutter_simple_app
+add necessary dependencies pubspec.yaml file in your project and add dependencies:
+  flutter:
+    sdk: flutter
+  flutter_launcher_icons: ^0.9.2
+Create assets: Place your splash screen logo image in the assets folder of your project.Configure splash screen: Open the android/app/src/main/AndroidManifest.xml file and add the following intent filter inside the <activity> tag:<intent-filter>
+    <action android:name="android.intent.action.MAIN"/>
+    <category android:name="android.intent.category.LAUNCHER"/>
+</intent-filter>
+<intent-filter>
+    <action android:name="android.intent.action.MAIN"/>
+    <category android:name="android.intent.category.LAUNCHER"/>
+    <category android:name="android.intent.category.DEFAULT"/>
+</intent-filter>Design splash screen: Create a SplashScreen widget that displays your logo for a few seconds before navigating to the login page.Design login page: Create a LoginPage widget with two text fields for email and password inputs, and a button for login.Design home page: Create a HomePage widget that displays a list of items. You can use a ListView widget for this purpose.Implement basic navigation: Use the Navigator widget to navigate between the splash screen, login page, and home page.Use material library: Make sure to use widgets from the material library, such as Scaffold, AppBar, TextField, ListView, etc., for consistent design and behavior.Run the app: Run your app on an emulator or physical device to test its functionality.*/
+
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: SplashScreen(),
+    );
+  }
+}
+
+class SplashScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Image.asset('assets/logo.png'),
+      ),
+    );
+  }
+}
+
+class LoginPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('Login')),
+      body: Center(
+        child: Column(
+          children: [
+            TextField(decoration: InputDecoration(labelText: 'Email')),
+            TextField(decoration: InputDecoration(labelText: 'Password')),
+            ElevatedButton(
+              onPressed: () {
+                // Implement login functionality
+              },
+              child: Text('Login'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class HomePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('Home')),
+      body: ListView.builder(
+        itemCount: 10, // Example: Display 10 items
+        itemBuilder: (context, index) {
+          return ListTile(
+            title: Text('Item ${index + 1}'),
+            onTap: () {
+              // Implement item selection functionality
+            },
+          );
+        },
+      ),
+    );
+  }
+}
